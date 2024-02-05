@@ -14,8 +14,8 @@ export default function ArticlePage() {
 
   return (
     <>
-      <img src={singleArticle.article_img_url} />
-      <p>{singleArticle.title}</p>
+      <img id="article--image" src={singleArticle.article_img_url} />
+      <h2>{singleArticle.title}</h2>
       <p>{singleArticle.body}</p>
     </>
   );
