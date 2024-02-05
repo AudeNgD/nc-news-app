@@ -24,3 +24,22 @@
 #comment--item:last-child {
   border: none;
 }
+
+#article--deck {
+  display: flex;
+  flex-direction: column;
+}
+
+#article--tile {
+  border: 2px solid grey;
+  margin-bottom: 4px;
+  display: block;
+  text-align: left;
+  padding-left: 5px;
+}
+
+.vote {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}

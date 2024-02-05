@@ -18,15 +18,19 @@ export default function ArticlesList() {
   return (
     <>
       <h2>Latest articles</h2>
-      {articles.map((article) => {
-        return (
-          <div key={article.article_id}>
-            <ArticleLink article={article} />
-            <p>By: {article.author}</p>
-            <p>On: {Date(article.created_at)}</p>
-          </div>
-        );
-      })}
+      <div id="article--deck">
+        {articles.map((article) => {
+          return (
+            <div key={article.article_id} id="article--tile">
+              <ArticleLink article={article} />
+              <p>By: {article.author}</p>
+              <p>On: {Date(article.created_at)}</p>
+              <p>Likes: {article.votes}</p>
+              <p>Comments: {article.comment_count}</p>
+            </div>
+          );
+        })}
+      </div>
     </>
   );
 }

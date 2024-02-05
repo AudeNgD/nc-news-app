@@ -31,3 +31,12 @@ export const fetchComments = (article_id) => {
       console.log(err);
     });
 };
+
+export const patchArticleVotes = (vote, article_id) => {
+  const votePatch = { inc_votes: vote };
+  return newsApi
+    .patch(`/articles/${article_id}`, votePatch)
+    .then(({ data }) => {
+      return data.updatedArticle;
+    });
+};
