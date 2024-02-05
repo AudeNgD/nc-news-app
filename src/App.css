@@ -8,3 +8,19 @@
 #article--image {
   width: 200px;
 }
+
+#comment--section {
+  border: 2px solid grey;
+  display: block;
+  text-align: left;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#comment--item {
+  border-bottom: 1px solid grey;
+}
+
+#comment--item:last-child {
+  border: none;
+}
