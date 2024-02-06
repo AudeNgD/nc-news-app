@@ -21,9 +21,9 @@ export default function TopicsList() {
       <div id="topics-deck">
         {topics.map((topic) => {
           return (
-            <div className="topic-card">
-              <Link to={`/home/topics/${topic}`}>{topic.slug} </Link>
-            </div>
+            <button className="topic-button" key={topic.slug}>
+              <Link to={`/home/topics/${topic.slug}`}>{topic.slug}</Link>
+            </button>
           );
         })}
       </div>
