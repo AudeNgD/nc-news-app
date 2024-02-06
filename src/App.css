@@ -43,3 +43,7 @@
   flex-direction: row;
   gap: 5px;
 }
+
+.button--vote {
+  margin-bottom: 10px;
+}
