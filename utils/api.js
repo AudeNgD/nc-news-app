@@ -48,3 +48,7 @@ export const postNewComment = (newComment, article_id) => {
       return data.comment;
     });
 };
+
+export const deleteComment = (comment_id) => {
+  return newsApi.delete(`/comments/${comment_id}`);
+};

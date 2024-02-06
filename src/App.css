@@ -84,3 +84,12 @@
   font-size: large;
   color: red;
 }
+
+.own--comment {
+  background-color: rgba(255, 255, 255, 0.87);
+  color: #242424;
+}
+
+.delete--comment {
+  font-size: small;
+}
