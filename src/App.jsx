@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Route, Routes } from "react-router-dom";
 import CurrentUserContext from "./contexts/CurrentUserContext";
 import Homepage from "./components/Homepage";
@@ -8,7 +8,7 @@ import ArticlePage from "./components/ArticlePage";
 import "./App.css";
 
 function App() {
-  const [currentUser, SetCurrentUser] = useState("");
+  const [currentUser, SetCurrentUser] = useState("jessjelly");
   return (
     <>
       <CurrentUserContext.Provider value={{ currentUser, SetCurrentUser }}>
