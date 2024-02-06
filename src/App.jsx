@@ -15,7 +15,7 @@ function App() {
         <Routes>
           <Route path="/home" element={<Homepage />} />
           <Route path="/home/:user" element={<UserHomepage />} />
-          <Route path="/home/articles/:article_id" element={<ArticlePage />} />
+          <Route path="/home/articles/:articleId" element={<ArticlePage />} />
         </Routes>
       </CurrentUserContext.Provider>
     </>
