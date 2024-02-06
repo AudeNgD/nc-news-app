@@ -4,7 +4,7 @@ import { postNewComment } from "../../utils/api";
 
 export default function NewCommentForm(props) {
   const { article_id, addNewCommentToList, toggle, isToggled } = props;
-  const { currentUser, SetCurrentUser } = useContext(CurrentUserContext);
+  const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
   const [userComment, setUserComment] = useState("");
   const [disabled, isDisabled] = useState(false);
 

@@ -8,10 +8,10 @@ import ArticlePage from "./components/ArticlePage";
 import "./App.css";
 
 function App() {
-  const [currentUser, SetCurrentUser] = useState("jessjelly");
+  const [currentUser, setCurrentUser] = useState("jessjelly");
   return (
     <>
-      <CurrentUserContext.Provider value={{ currentUser, SetCurrentUser }}>
+      <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
         <Routes>
           <Route path="/home" element={<Homepage />} />
           <Route path="/home/:user" element={<UserHomepage />} />
