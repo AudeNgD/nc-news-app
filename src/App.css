@@ -47,3 +47,13 @@
 .button--vote {
   margin-bottom: 10px;
 }
+
+.section--interaction {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.comment--form > button {
+  margin-bottom: 30px;
+}
