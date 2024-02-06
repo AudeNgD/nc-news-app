@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import CurrentUserContext from "./contexts/CurrentUserContext";
 import Homepage from "./components/Homepage";
 import UserHomepage from "./components/UserHomepage";
@@ -16,6 +16,7 @@ function App() {
           <Route path="/home" element={<Homepage />} />
           <Route path="/home/:user" element={<UserHomepage />} />
           <Route path="/home/articles/:articleId" element={<ArticlePage />} />
+          <Route path="*" element={<Navigate to="/home" />} />
         </Routes>
       </CurrentUserContext.Provider>
     </>
