@@ -79,11 +79,9 @@ export default function ArticlePage() {
   }
 
   function addNewCommentToList(comment) {
-    fetchComments(articleId).then(() => {
-      comment.votes = 0;
-      setComments((currentComments) => {
-        return [comment, ...currentComments];
-      });
+    comment.votes = 0;
+    setComments((currentComments) => {
+      return [comment, ...currentComments];
     });
   }
 

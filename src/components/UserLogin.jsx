@@ -3,7 +3,7 @@ import CurrentUserContext from "../contexts/CurrentUserContext";
 import { Link } from "react-router-dom";
 
 export default function UserLogin() {
-  const { currentUser, SetCurrentUser } = useContext(CurrentUserContext);
+  const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
 
   function handleLogin(event) {
     event.preventDefault();
@@ -11,7 +11,7 @@ export default function UserLogin() {
 
   function handleUsernameChange(event) {
     event.preventDefault();
-    SetCurrentUser(event.target.value);
+    setCurrentUser(event.target.value);
   }
 
   return (
