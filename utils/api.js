@@ -4,11 +4,20 @@ const newsApi = axios.create({
   baseURL: "https://nc-news-uld9.onrender.com/api",
 });
 
-export const fetchArticles = (article_id) => {
+export const fetchArticles = (params) => {
   let endpointString = "/articles";
 
-  if (article_id !== undefined) {
-    endpointString += `/${article_id}`;
+  if (params.hasOwnProperty("articleId")) {
+    endpointString += `/${Number(params.articleId)}`;
+  }
+
+  if (params.hasOwnProperty("sort") || params.hasOwnProperty("order")) {
+    const sort = params.sort_by;
+    const order = params.order;
+    if (sort !== "" && order === "") endpointString += `?sort_by=${sort}`;
+    if (sort === "" && order !== "") endpointString += `?order=${order}`;
+    if (sort !== "" && order !== "")
+      endpointString += `?sort_by=${sort}&order=${order}`;
   }
 
   return newsApi
@@ -21,7 +30,8 @@ export const fetchArticles = (article_id) => {
     });
 };
 
-export const fetchComments = (article_id) => {
+export const fetchComments = (params) => {
+  const article_id = params.articleId;
   return newsApi
     .get(`/articles/${article_id}/comments`)
     .then(({ data }) => {
