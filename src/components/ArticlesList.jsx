@@ -29,12 +29,8 @@ export default function ArticlesList() {
           <div id="article--deck">
             {articles.map((article) => {
               return (
-                <div key={article.article_id} id="article--tile">
+                <div key={article.article_id} class="article--tile">
                   <ArticleLink article={article} />
-                  <p>By: {article.author}</p>
-                  <p>On: {Date(article.created_at)}</p>
-                  <p>Likes: {article.votes}</p>
-                  <p>Comments: {article.comment_count}</p>
                 </div>
               );
             })}
