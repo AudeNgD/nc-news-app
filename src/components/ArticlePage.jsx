@@ -93,6 +93,7 @@ export default function ArticlePage() {
         <>
           <img id="article--image" src={article_img_url} />
           <h2>{title}</h2>
+          <div className="error--message"> {error}</div>
           <p>{body}</p>
 
           <div className="section--interaction">

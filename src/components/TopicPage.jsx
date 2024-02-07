@@ -6,6 +6,8 @@ import ArticleLink from "./ArticleLink";
 export default function TopicPage() {
   const { topic } = useParams();
   const [articlesAboutTopic, setArticlesAboutTopic] = useState([]);
+  const [isLoadingTopicsPage, setIsLoadingTopicsPage] = useState(true);
+  const [error, setError] = useState(null);
 
   const query = `?topic=${topic}`;
 
@@ -13,21 +15,35 @@ export default function TopicPage() {
     fetchArticles(query)
       .then((res) => {
         setArticlesAboutTopic(res.articles);
+        setError(null);
+        setIsLoadingTopicsPage(false);
       })
       .catch((err) => {
-        console.log(err);
+        setError(
+          "Cannot retrieve articles at this time. Please try again later!"
+        );
+        setIsLoadingTopicsPage(false);
       });
   }, []);
+
   return (
     <>
-      <h2>{topic}</h2>
-      {articlesAboutTopic.map((article) => {
-        return (
-          <div key={article.article_id} className="article--tile">
-            <ArticleLink article={article} />
-          </div>
-        );
-      })}
+      {" "}
+      {isLoadingTopicsPage ? (
+        <p className="loading--message">...loading articles</p>
+      ) : (
+        <>
+          <h2>{topic}</h2>
+          <div className="error--message"> {error}</div>
+          {articlesAboutTopic.map((article) => {
+            return (
+              <div key={article.article_id} className="article--tile">
+                <ArticleLink article={article} />
+              </div>
+            );
+          })}
+        </>
+      )}
     </>
   );
 }
