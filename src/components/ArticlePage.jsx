@@ -9,7 +9,8 @@ import CommentsList from "./CommentsList";
 import NewCommentForm from "./NewCommentForm";
 
 export default function ArticlePage() {
-  const { articleId } = useParams();
+  const articleId = useParams();
+
   const [error, setError] = useState(null);
   const [toggle, isToggled] = useState(false);
   const [isLoadingArticle, setIsLoadingArticle] = useState(true);
