@@ -24,26 +24,19 @@ export const fetchArticles = (params) => {
       endpointString += `?sort_by=${sort}&order=${order}`;
   }
 
-  return newsApi
-    .get(endpointString)
-    .then(({ data }) => {
-      return data;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  return newsApi.get(endpointString).then(({ data }) => {
+    return data;
+  });
 };
 
 export const fetchComments = (params) => {
   const article_id = params.articleId;
-  return newsApi
-    .get(`/articles/${article_id}/comments`)
-    .then(({ data }) => {
-      return data.comments;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  return newsApi.get(`/articles/${article_id}/comments`).then(({ data }) => {
+    return data.comments;
+  });
+  // .catch((err) => {
+  //   console.log(err);
+  // });
 };
 
 export const patchArticleVotes = (vote, article_id) => {

@@ -3,6 +3,7 @@ import { fetchArticles } from "../../utils/api";
 import { useState, useEffect } from "react";
 import ArticleLink from "./ArticleLink";
 import { SortAndOrderArticles } from "./SortAndOrderArticles";
+import ErrorPage from "./ErrorPage";
 
 export default function TopicPage() {
   const { topic } = useParams();
@@ -37,13 +38,15 @@ export default function TopicPage() {
         setError(null);
         setIsLoadingTopicsPage(false);
       })
-      .catch((err) => {
-        setError(
-          "Cannot retrieve articles at this time. Please try again later!"
-        );
+      .catch(({ response }) => {
+        setError(response.data.msg);
         setIsLoadingTopicsPage(false);
       });
   }, [sortAndOrder]);
+
+  if (error) {
+    return <ErrorPage message={error} />;
+  }
 
   return (
     <>
@@ -58,7 +61,6 @@ export default function TopicPage() {
             articlesAboutTopic={articlesAboutTopic}
             setArticlesAboutTopic={setArticlesAboutTopic}
           />
-          <div className="error--message"> {error}</div>
           {articlesAboutTopic.map((article) => {
             return (
               <div key={article.article_id} className="article--tile">

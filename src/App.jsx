@@ -9,6 +9,7 @@ import TopicsList from "./components/TopicsList";
 import "./App.css";
 import TopicPage from "./components/TopicPage";
 import { Outlet } from "react-router";
+import ErrorPage from "./components/ErrorPage";
 
 function App() {
   const [currentUser, setCurrentUser] = useState("jessjelly");
@@ -29,7 +30,8 @@ function App() {
             <Route path="/home/topics" element={<TopicsList />} />
             <Route path="/home/topics/:topic" element={<TopicPage />} />
             <Route path="/home/articles/:articleId" element={<ArticlePage />} />
-            <Route path="*" element={<Navigate to="/home" />} />
+            <Route path="/" element={<Navigate to="/home" />} />
+            <Route path="*" element={<ErrorPage />} />
           </Route>
         </Routes>
       </CurrentUserContext.Provider>

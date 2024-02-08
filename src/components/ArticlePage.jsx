@@ -7,6 +7,7 @@ import {
 } from "../../utils/api";
 import CommentsList from "./CommentsList";
 import NewCommentForm from "./NewCommentForm";
+import ErrorPage from "./ErrorPage";
 
 export default function ArticlePage() {
   const articleId = useParams();
@@ -26,8 +27,8 @@ export default function ArticlePage() {
         setError(null);
         setIsLoadingArticle(false);
       })
-      .catch((err) => {
-        setError(err);
+      .catch(({ response }) => {
+        setError(response.data.msg);
         setIsLoadingArticle(false);
       })
       .then(() => {
@@ -37,8 +38,8 @@ export default function ArticlePage() {
           setIsLoadingComments(false);
         });
       })
-      .catch((err) => {
-        setError(err);
+      .catch(({ response }) => {
+        setError(response.data.msg);
         setIsLoadingComments(false);
       });
   }, []);
@@ -84,6 +85,10 @@ export default function ArticlePage() {
     setComments((currentComments) => {
       return [comment, ...currentComments];
     });
+  }
+
+  if (error) {
+    return <ErrorPage message={error} />;
   }
 
   return (
