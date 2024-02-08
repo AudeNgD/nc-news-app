@@ -11,7 +11,7 @@ export default function TopicPage() {
   const [error, setError] = useState(null);
   const [sortAndOrder, setSortAndOrder] = useState({ sort_by: "", order: "" });
 
-  const query = `?topic=${topic}`;
+  const query = { topic: `${topic}` };
 
   useEffect(() => {
     fetchArticles(query)

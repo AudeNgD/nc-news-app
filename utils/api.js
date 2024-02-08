@@ -11,6 +11,10 @@ export const fetchArticles = (params) => {
     endpointString += `/${Number(params.articleId)}`;
   }
 
+  if (params.hasOwnProperty("topic")) {
+    endpointString += `?topic=${params.topic}`;
+  }
+
   if (params.hasOwnProperty("sort") || params.hasOwnProperty("order")) {
     const sort = params.sort_by;
     const order = params.order;
