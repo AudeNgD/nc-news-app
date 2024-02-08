@@ -61,13 +61,15 @@ export default function TopicPage() {
             articlesAboutTopic={articlesAboutTopic}
             setArticlesAboutTopic={setArticlesAboutTopic}
           />
-          {articlesAboutTopic.map((article) => {
-            return (
-              <div key={article.article_id} className="article--tile">
-                <ArticleLink article={article} />
-              </div>
-            );
-          })}
+          <div id="article--deck">
+            {articlesAboutTopic.map((article) => {
+              return (
+                <div key={article.article_id} className="article--tile">
+                  <ArticleLink article={article} />
+                </div>
+              );
+            })}
+          </div>
         </>
       )}
     </>

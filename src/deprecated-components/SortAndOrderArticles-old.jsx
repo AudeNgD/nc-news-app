@@ -1,17 +1,17 @@
 export function SortAndOrderArticles(props) {
-  const { queries, setQueries } = props;
+  const { sortAndOrder, setSortAndOrder } = props;
 
   function handleSortByChange(event) {
     event.preventDefault();
-    setQueries((currentQueries) => {
-      return { ...currentQueries, sort_by: event.target.value };
+    setSortAndOrder((currentSortAndOrder) => {
+      return { ...currentSortAndOrder, sort_by: event.target.value };
     });
   }
 
   function handleOrderByClick(event) {
     event.preventDefault();
-    setQueries((currentQueries) => {
-      return { ...currentQueries, order: event.target.value };
+    setSortAndOrder((currentSortAndOrder) => {
+      return { ...currentSortAndOrder, order: event.target.value };
     });
   }
 

@@ -5,11 +5,12 @@ import { SortAndOrderArticles } from "./SortAndOrderArticles";
 
 export default function ArticlesList(props) {
   const [queries, setQueries] = useState({
-    sort_by: "created_at",
-    order: "desc",
+    sort_by: "",
+    order: "",
     p: 1,
     limit: 10,
   });
+  const [sortAndOrder, setSortAndOrder] = useState({ sort_by: "", order: "" });
   const [articles, setArticles] = useState([]);
   const [isLoadingArticles, setIsLoadingArticles] = useState(true);
   const [totalNumberOfArticles, setTotalNumberOfArticles] = useState(0);
@@ -17,7 +18,7 @@ export default function ArticlesList(props) {
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    fetchArticles(queries)
+    fetchArticles(sortAndOrder)
       .then((res) => {
         setTotalNumberOfArticles(res.total_count);
         setTotalNumberOfPages(Math.ceil(res.total_count / 10));
@@ -27,20 +28,10 @@ export default function ArticlesList(props) {
       .catch((err) => {
         setIsLoadingArticles(false);
       });
-  }, [queries]);
+  }, [sortAndOrder]);
 
-  function handlePageClick(event) {
-    console.log(event);
-    event.preventDefault();
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "smooth",
-    });
-    setCurrentPage((currentPage) => currentPage + Number(event.target.value));
-    setQueries((currentQueries) => {
-      return { ...currentQueries, p: currentPage };
-    });
+  function handleNextClick(event) {
+    currentPage((currentPage) => currentPage + 1);
   }
 
   return (
@@ -49,8 +40,11 @@ export default function ArticlesList(props) {
         <p className="loading--message">...loading articles</p>
       ) : (
         <>
-          <h2>Articles</h2>
-          <SortAndOrderArticles queries={queries} setQueries={setQueries} />
+          <h2>Latest articles</h2>
+          <SortAndOrderArticles
+            sortAndOrder={sortAndOrder}
+            setSortAndOrder={setSortAndOrder}
+          />
 
           <div id="article--deck">
             {articles.map((article) => {
@@ -62,31 +56,16 @@ export default function ArticlesList(props) {
             })}
           </div>
           <div className="pagination">
-            {currentPage > 1 ? (
-              <>
-                <label htmlFor="button--previous"></label>
-                <button
-                  className="button--change-page"
-                  id="button--previous"
-                  onClick={handlePageClick}
-                  value="-1"
-                >
-                  &lt;
-                </button>
-              </>
-            ) : null}
             <p>
               {currentPage}/{totalNumberOfPages}
             </p>
             <label htmlFor="button--next"></label>
             <button
-              className="button--change-page"
               id="button--next"
-              onClick={handlePageClick}
-              value="1"
+              onClick={handleNextClick}
               disabled={currentPage === totalNumberOfPages}
             >
-              &gt;
+              Next page
             </button>
           </div>
         </>

@@ -1,3 +1,5 @@
+//DEPRECATED AND REPLACED WITH TopicLinks component
+
 import { useEffect, useState } from "react";
 import { fetchTopics } from "../../utils/api";
 import { Link } from "react-router-dom";
@@ -15,7 +17,6 @@ export default function TopicsList() {
         setIsLoadingTopics(false);
       })
       .catch((err) => {
-        console.log(err);
         setError("Cannot fetch topics at this time. Please try again later!");
         setIsLoadingTopics(false);
       });

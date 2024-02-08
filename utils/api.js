@@ -15,13 +15,11 @@ export const fetchArticles = (params) => {
     endpointString += `?topic=${params.topic}`;
   }
 
-  if (params.hasOwnProperty("sort") || params.hasOwnProperty("order")) {
+  if (params.hasOwnProperty("p")) {
     const sort = params.sort_by;
     const order = params.order;
-    if (sort !== "" && order === "") endpointString += `?sort_by=${sort}`;
-    if (sort === "" && order !== "") endpointString += `?order=${order}`;
-    if (sort !== "" && order !== "")
-      endpointString += `?sort_by=${sort}&order=${order}`;
+    const p = params.p;
+    endpointString += `?p=${p}&sort_by=${sort}&order=${order}`;
   }
 
   return newsApi.get(endpointString).then(({ data }) => {
@@ -42,7 +40,7 @@ export const fetchComments = (params) => {
 export const patchArticleVotes = (vote, article_id) => {
   const votePatch = { inc_votes: vote };
   return newsApi
-    .patch(`/articles/${article_id}`, votePatch)
+    .patch(`/articles/${article_id}/nonsense`, votePatch)
     .then(({ data }) => {
       return data.updatedArticle;
     });

@@ -13,7 +13,12 @@ export default function CommentsList(props) {
         if (comment.author === currentUser) {
           comment.author = "You";
         }
-        return <CommentItem key={comment.comment_id} comment={comment} />;
+        return (
+          <CommentItem
+            key={comment.comment_id + comment.author}
+            comment={comment}
+          />
+        );
       })}
     </div>
   );
