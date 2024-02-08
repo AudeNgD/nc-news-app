@@ -11,7 +11,6 @@ import ErrorPage from "./ErrorPage";
 
 export default function ArticlePage() {
   const articleId = useParams();
-
   const [error, setError] = useState(null);
   const [toggle, isToggled] = useState(false);
   const [isLoadingArticle, setIsLoadingArticle] = useState(true);
@@ -87,9 +86,9 @@ export default function ArticlePage() {
     });
   }
 
-  if (error) {
-    return <ErrorPage message={error} />;
-  }
+  // if (error) {
+  //   return <ErrorPage message={error} />;
+  // }
 
   return (
     <>
@@ -99,9 +98,8 @@ export default function ArticlePage() {
         <>
           <img id="article--image" src={article_img_url} />
           <h2>{title}</h2>
-          <div className="error--message"> {error}</div>
-          <p>{body}</p>
 
+          <p>{body}</p>
           <div className="section--interaction">
             <div className="vote">
               <button
@@ -110,7 +108,7 @@ export default function ArticlePage() {
                 onClick={handleClickVote}
                 value="1"
               >
-                &#128077;{" "}
+                &#128077;
               </button>
               <button
                 disabled={disabledVoting}

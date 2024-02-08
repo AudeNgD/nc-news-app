@@ -13,9 +13,13 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+nav > ul > li > a {
+  color: #535bf2;
+}
+
 a {
   font-weight: 500;
-  color: #646cff;
+  color: gold;
   text-decoration: inherit;
 }
 a:hover {

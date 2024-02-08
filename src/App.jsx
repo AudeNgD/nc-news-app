@@ -5,7 +5,7 @@ import Homepage from "./components/Homepage";
 import UserHomepage from "./components/UserHomepage";
 import ArticlePage from "./components/ArticlePage";
 import NavBar from "./components/NavBar";
-import TopicsList from "./components/TopicsList";
+import TopicsList from "./deprecated-components/TopicsList";
 import "./App.css";
 import TopicPage from "./components/TopicPage";
 import { Outlet } from "react-router";
@@ -18,7 +18,7 @@ function App() {
       <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
         <Routes>
           <Route path="/home" element={<Homepage />} />
-
+          <Route path="*" element={<ErrorPage />} />
           <Route
             element={
               <>
@@ -31,7 +31,6 @@ function App() {
             <Route path="/home/topics/:topic" element={<TopicPage />} />
             <Route path="/home/articles/:articleId" element={<ArticlePage />} />
             <Route path="/" element={<Navigate to="/home" />} />
-            <Route path="*" element={<ErrorPage />} />
           </Route>
         </Routes>
       </CurrentUserContext.Provider>
