@@ -4,6 +4,18 @@ const newsApi = axios.create({
   baseURL: "https://nc-news-uld9.onrender.com/api",
 });
 
+export const fetchSingleUser = (params) => {
+  let endpointString = "/users";
+
+  const username = params.username;
+
+  endpointString += `/${username}`;
+
+  return newsApi.get(endpointString).then(({ data }) => {
+    return data;
+  });
+};
+
 export const fetchArticles = (params) => {
   let endpointString = "/articles";
 
