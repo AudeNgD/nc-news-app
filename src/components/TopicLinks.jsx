@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { fetchTopics } from "../../utils/api";
+import ExistingTopicsContext from "../contexts/ExistingTopicsContext";
 
 export default function TopicLinks() {
-  const [topics, setTopics] = useState([]);
+  // const [topics, setTopics] = useState([]);
+  const { topics, setTopics } = useContext(ExistingTopicsContext);
   const [isLoadingTopics, setIsLoadingTopics] = useState(true);
   const [error, setError] = useState(null);
 

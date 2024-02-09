@@ -52,45 +52,47 @@ export default function ArticlesList(props) {
         <p className="loading--message">...loading articles</p>
       ) : (
         <>
-          <h2>Articles</h2>
-          <SortAndOrderArticles queries={queries} setQueries={setQueries} />
+          <div id="article--list">
+            <h2>Articles</h2>
+            <SortAndOrderArticles queries={queries} setQueries={setQueries} />
 
-          <div id="article--deck">
-            {articles.map((article) => {
-              return (
-                <div key={article.article_id} className="article--tile">
-                  <ArticleLink article={article} />
-                </div>
-              );
-            })}
-          </div>
-          <div className="pagination">
-            {currentPage > 1 ? (
-              <>
-                <label htmlFor="button--previous"></label>
-                <button
-                  className="button--change-page"
-                  id="button--previous"
-                  onClick={handlePageClick}
-                  value="-1"
-                >
-                  &lt;
-                </button>
-              </>
-            ) : null}
-            <p>
-              {currentPage}/{totalNumberOfPages}
-            </p>
-            <label htmlFor="button--next"></label>
-            <button
-              className="button--change-page"
-              id="button--next"
-              onClick={handlePageClick}
-              value="1"
-              disabled={currentPage === totalNumberOfPages}
-            >
-              &gt;
-            </button>
+            <div id="article--deck">
+              {articles.map((article) => {
+                return (
+                  <div key={article.article_id} className="article--tile">
+                    <ArticleLink article={article} />
+                  </div>
+                );
+              })}
+            </div>
+            <div className="pagination">
+              {currentPage > 1 ? (
+                <>
+                  <label htmlFor="button--previous"></label>
+                  <button
+                    className="button--change-page"
+                    id="button--previous"
+                    onClick={handlePageClick}
+                    value="-1"
+                  >
+                    &lt;
+                  </button>
+                </>
+              ) : null}
+              <p>
+                {currentPage}/{totalNumberOfPages}
+              </p>
+              <label htmlFor="button--next"></label>
+              <button
+                className="button--change-page"
+                id="button--next"
+                onClick={handlePageClick}
+                value="1"
+                disabled={currentPage === totalNumberOfPages}
+              >
+                &gt;
+              </button>
+            </div>
           </div>
         </>
       )}

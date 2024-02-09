@@ -280,3 +280,26 @@ a:hover {
   gap: 20px;
   text-align: left;
 }
+
+#homepage--content {
+  display: flex;
+  flex-direction: row;
+  row-gap: 15px;
+}
+
+#sidebar {
+  border-right: 2px solid gold;
+  margin-right: 20px;
+  padding-right: 10px;
+}
+#article--list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#article--form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

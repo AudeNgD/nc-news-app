@@ -75,3 +75,16 @@ export const fetchTopics = () => {
     return data.topics;
   });
 };
+
+export const postNewTopic = (newTopic) => {
+  return newsApi.post(`/topics`, newTopic).then(({ data }) => {
+    return data.new_topic;
+  });
+};
+export const postNewArticle = (newArticle) => {
+  console.log(newArticle);
+  return newsApi.post(`/articles`, newArticle).then(({ data }) => {
+    console.log(data.newArticle);
+    return data.newArticle;
+  });
+};
