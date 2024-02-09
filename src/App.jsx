@@ -11,6 +11,7 @@ import "./App.css";
 import TopicPage from "./components/TopicPage";
 import { Outlet } from "react-router";
 import ErrorPage from "./components/ErrorPage";
+import UserAccountPage from "./components/UserAccountPage";
 
 function App() {
   const [currentUser, setCurrentUser] = useState("");
@@ -31,6 +32,7 @@ function App() {
               }
             >
               <Route path="/home/:user" element={<UserHomepage />} />
+              <Route path="/home/:user/account" element={<UserAccountPage />} />
               <Route path="/home/topics" element={<TopicsList />} />
               <Route path="/home/topics/:topic" element={<TopicPage />} />
               <Route

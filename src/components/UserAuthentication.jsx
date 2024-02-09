@@ -4,17 +4,20 @@ import CurrentUserContext from "../contexts/CurrentUserContext";
 
 export default function UserAuthentication(props) {
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
-  const { authSuccess, setAuthSuccess, error, setError } = props;
+  const { authSuccess, setAuthSuccess, error, setError, input, setInput } =
+    props;
 
   if (currentUser !== "guest") {
     useEffect(() => {
-      fetchSingleUser({ username: currentUser })
+      fetchSingleUser({ username: input })
         .then((res) => {
           setAuthSuccess(true);
+          setCurrentUser(res.user);
+          localStorage.setItem("user", res.user);
         })
         .catch((err) => {
           setError(err.response.data.msg);
         });
-    }, [currentUser]);
+    }, [input]);
   }
 }

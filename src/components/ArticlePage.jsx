@@ -7,7 +7,6 @@ import {
 } from "../../utils/api";
 import CommentsList from "./CommentsList";
 import NewCommentForm from "./NewCommentForm";
-import ErrorPage from "./ErrorPage";
 import CurrentGuestContext from "../contexts/CurrentGuestContext";
 
 export default function ArticlePage() {

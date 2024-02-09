@@ -24,20 +24,51 @@ body {
   gap: 10px;
 }
 
+/* NAV BAR */
 nav {
   background-color: rgba(255, 255, 255, 0.87);
   color: #242424;
   height: 70px;
   width: 100%;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   font-size: large;
   font-weight: 800;
   top: 0px;
 }
 
+#link--account {
+  margin-right: 40px;
+  border: 2px solid #535bf2;
+  padding: 3px;
+}
+
+#link--account:hover {
+  background-color: #535bf2;
+  color: rgba(255, 255, 255, 0.87);
+}
+
 nav > ul > li {
   list-style-type: none;
+}
+
+nav > ul > li > a {
+  color: #535bf2;
+}
+
+nav > a {
+  color: #535bf2;
+}
+
+a {
+  font-weight: 500;
+  color: gold;
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: #535bf2;
 }
 
 #main--logo {
@@ -45,6 +76,8 @@ nav > ul > li {
   margin-left: 5px;
   margin-top: 5px;
 }
+
+/* ARTICLE PAGE */
 
 #article--image {
   width: 50%;
@@ -222,4 +255,28 @@ nav > ul > li {
 .pagination > p {
   padding: 0px;
   margin: 7px;
+}
+
+/* ACCOUNT PAGE */
+
+#account--section {
+  margin-top: 25px;
+  padding: 5px;
+  gap: 5px;
+}
+
+#account--header {
+  color: gold;
+}
+
+#account--img {
+  border-radius: 5px;
+  border: 2px solid gold;
+}
+
+#account--info {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  text-align: left;
 }

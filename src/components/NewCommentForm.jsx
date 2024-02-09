@@ -17,7 +17,7 @@ export default function NewCommentForm(props) {
   function addNewComment(event) {
     event.preventDefault();
     isDisabled(true);
-    const newComment = { author: currentUser, body: userComment };
+    const newComment = { author: currentUser.username, body: userComment };
     postNewComment(newComment, article_id).catch((err) => {
       setError("Cannot post comment at this time. Please try again later");
     });
