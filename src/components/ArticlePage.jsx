@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import {
   fetchArticles,
   fetchComments,
@@ -8,6 +8,7 @@ import {
 import CommentsList from "./CommentsList";
 import NewCommentForm from "./NewCommentForm";
 import ErrorPage from "./ErrorPage";
+import CurrentGuestContext from "../contexts/CurrentGuestContext";
 
 export default function ArticlePage() {
   const articleId = useParams();
@@ -18,6 +19,7 @@ export default function ArticlePage() {
   const [disabledVoting, isDisabledVoting] = useState(false);
   const [singleArticle, setSingleArticle] = useState([]);
   const [comments, setComments] = useState([]);
+  const { guest, setGuest } = useContext(CurrentGuestContext);
 
   useEffect(() => {
     fetchArticles(articleId)
@@ -55,28 +57,37 @@ export default function ArticlePage() {
   } = singleArticle;
 
   function handleClickVote(event) {
-    const vote = Number(event.target.value);
-    isDisabledVoting(true);
+    if (guest === "guest") {
+      setError("You must have an account to be able to like articles");
+    } else {
+      const vote = Number(event.target.value);
+      isDisabledVoting(true);
 
-    patchArticleVotes(vote, article_id)
-      .then(() => {
-        setError(null);
-      })
-      .catch((err) => {
-        setSingleArticle((currentArticle) => {
-          return { ...currentArticle, votes: currentArticle.votes - vote };
+      patchArticleVotes(vote, article_id)
+        .then(() => {
+          setError(null);
+        })
+        .catch((err) => {
+          setSingleArticle((currentArticle) => {
+            return { ...currentArticle, votes: currentArticle.votes - vote };
+          });
+          setError(
+            "Voting is not available at the moment. Apologies for the inconvenience!"
+          );
         });
-        setError(
-          "Voting is not available at the moment. Apologies for the inconvenience!"
-        );
+      setSingleArticle((currentArticle) => {
+        return { ...currentArticle, votes: currentArticle.votes + vote };
       });
-    setSingleArticle((currentArticle) => {
-      return { ...currentArticle, votes: currentArticle.votes + vote };
-    });
+    }
   }
 
   function handleCommentClick(event) {
-    toggle ? isToggled(false) : isToggled(true);
+    if (guest === "guest") {
+      isToggled(false);
+      setError("You must have an account to leave comments");
+    } else {
+      toggle ? isToggled(false) : isToggled(true);
+    }
   }
 
   function addNewCommentToList(comment) {
@@ -85,10 +96,6 @@ export default function ArticlePage() {
       return [comment, ...currentComments];
     });
   }
-
-  // if (error) {
-  //   return <ErrorPage message={error} />;
-  // }
 
   return (
     <>
