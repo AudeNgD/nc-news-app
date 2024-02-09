@@ -4,6 +4,7 @@ import TopicLinks from "./TopicLinks";
 import CurrentGuestContext from "../contexts/CurrentGuestContext";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 import UserAccountPage from "./UserAccountPage";
+import Logger from "./Logger";
 
 export default function NavBar() {
   const { guest, setGuest } = useContext(CurrentGuestContext);
@@ -13,17 +14,17 @@ export default function NavBar() {
   return (
     <nav>
       {guest === "" ? (
-        <Link to={`/home/${currentUser.username}`}>
+        <Link to={`/home`}>
           <img
-            src="../../assets/logo.png"
+            src="../src/assets/logo.png"
             id="main--logo"
             alt="nc news logo - a black and white computer drawing"
           ></img>
         </Link>
       ) : (
-        <Link to={`/home/${guest}`}>
+        <Link to={`/home`}>
           <img
-            src="../../assets/logo.png"
+            src="../src/assets/logo.png"
             id="main--logo"
             alt="nc news logo - a black and white computer drawing"
           ></img>
@@ -36,6 +37,7 @@ export default function NavBar() {
           My account
         </Link>
       ) : null}
+      <Logger />
     </nav>
   );
 }

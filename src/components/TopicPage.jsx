@@ -15,6 +15,7 @@ export default function TopicPage() {
   const query = { topic: `${topic}` };
 
   useEffect(() => {
+    setIsLoadingTopicsPage(true);
     fetchArticles(query)
       .then((res) => {
         setArticlesAboutTopic(res.articles);
@@ -42,7 +43,7 @@ export default function TopicPage() {
         setError(response.data.msg);
         setIsLoadingTopicsPage(false);
       });
-  }, [sortAndOrder]);
+  }, [sortAndOrder, topic]);
 
   if (error) {
     return <ErrorPage message={error} />;

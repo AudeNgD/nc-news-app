@@ -3,7 +3,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import CurrentUserContext from "./contexts/CurrentUserContext";
 import CurrentGuestContext from "./contexts/CurrentGuestContext";
 import ExistingTopicsContext from "./contexts/ExistingTopicsContext";
-import Homepage from "./components/Homepage";
+import Login from "./components/Login";
 import UserHomepage from "./components/UserHomepage";
 import ArticlePage from "./components/ArticlePage";
 import NavBar from "./components/NavBar";
@@ -26,7 +26,7 @@ function App() {
         <CurrentGuestContext.Provider value={{ guest, setGuest }}>
           <ExistingTopicsContext.Provider value={{ topics, setTopics }}>
             <Routes>
-              <Route path="/home" element={<Homepage />} />
+              <Route path="/login" element={<Login />} />
               <Route path="*" element={<ErrorPage />} />
               <Route
                 element={
@@ -35,7 +35,7 @@ function App() {
                   </>
                 }
               >
-                <Route path="/home/:user" element={<UserHomepage />} />
+                <Route path="/home" element={<UserHomepage />} />
                 <Route
                   path="/home/:user/account"
                   element={<UserAccountPage />}
@@ -50,7 +50,7 @@ function App() {
                   path="/home/articles/:articleId"
                   element={<ArticlePage />}
                 />
-                <Route path="/" element={<Navigate to="/home" />} />
+                <Route path="/" element={<Navigate to="/login" />} />
               </Route>
             </Routes>
           </ExistingTopicsContext.Provider>

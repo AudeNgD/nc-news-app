@@ -20,7 +20,7 @@ export default function UserLogin() {
     }
     if (authSuccess === true) {
       setGuest("");
-      navigate(`/home/${currentUser.username}`);
+      navigate(`/home`);
     }
   }
 
@@ -32,7 +32,7 @@ export default function UserLogin() {
   function handleGuestLogin(event) {
     event.preventDefault();
     setGuest("guest");
-    navigate(`/home/${guest}`);
+    navigate(`/home/`);
   }
 
   return (

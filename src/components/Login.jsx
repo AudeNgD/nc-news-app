@@ -1,7 +1,7 @@
 import HomepageHeader from "./HomepageHeader";
 import UserLogin from "./UserLogin";
 
-export default function Homepage() {
+export default function Login() {
   return (
     <>
       <HomepageHeader />
