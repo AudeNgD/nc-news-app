@@ -2,6 +2,7 @@ import { fetchArticles } from "../../utils/api";
 import { useEffect, useState } from "react";
 import ArticleLink from "./ArticleLink";
 import { SortAndOrderArticles } from "./SortAndOrderArticles";
+import { useSearchParams } from "react-router-dom";
 
 export default function ArticlesList(props) {
   const [queries, setQueries] = useState({
@@ -15,6 +16,7 @@ export default function ArticlesList(props) {
   const [totalNumberOfArticles, setTotalNumberOfArticles] = useState(0);
   const [totalNumberOfPages, setTotalNumberOfPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     fetchArticles(queries)
@@ -23,6 +25,7 @@ export default function ArticlesList(props) {
         setTotalNumberOfPages(Math.ceil(res.total_count / 10));
         setArticles(res.articles);
         setIsLoadingArticles(false);
+        setSearchParams(queries);
       })
       .catch((err) => {
         setIsLoadingArticles(false);
