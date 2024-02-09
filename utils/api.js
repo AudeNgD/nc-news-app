@@ -52,7 +52,7 @@ export const fetchComments = (params) => {
 export const patchArticleVotes = (vote, article_id) => {
   const votePatch = { inc_votes: vote };
   return newsApi
-    .patch(`/articles/${article_id}/nonsense`, votePatch)
+    .patch(`/articles/${article_id}`, votePatch)
     .then(({ data }) => {
       return data.updatedArticle;
     });
