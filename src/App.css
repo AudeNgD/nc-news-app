@@ -167,6 +167,7 @@ a:hover {
   cursor: pointer;
   transition: border-color 0.25s;
   margin-left: 5px;
+  color: #f9f9f9;
 }
 .button--vote {
   margin-right: 5px;
