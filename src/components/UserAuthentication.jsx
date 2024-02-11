@@ -16,6 +16,8 @@ export default function UserAuthentication(props) {
           localStorage.setItem("user", res.user);
         })
         .catch((err) => {
+          console.log(err);
+          setAuthSuccess(false);
           setError(err.response.data.msg);
         });
     }, [input]);

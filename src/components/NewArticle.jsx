@@ -35,7 +35,6 @@ export default function NewArticle() {
 
   function handleTopicChange(event) {
     event.preventDefault();
-    console.log(event.target.value);
     setReq((currentReq) => {
       return { ...currentReq, topic: event.target.value };
     });
@@ -83,6 +82,10 @@ export default function NewArticle() {
 
   return (
     <>
+      <section id="article--warning">
+        Please ensure that you follow the community rules before posting a new
+        article.
+      </section>
       <form id="article--form" onSubmit={addNewArticle}>
         <label htmlFor="article--topic">Topic</label>
         <input
@@ -90,6 +93,7 @@ export default function NewArticle() {
           value={req.topic}
           onBlur={handleTopicBlur}
           onChange={handleTopicChange}
+          placeholder="topic of your article in 1 word"
           required
         ></input>
         {toggle ? (
@@ -105,14 +109,18 @@ export default function NewArticle() {
           />
         ) : null}
 
-        <label htmlFor="article--title">Title</label>
+        <label htmlFor="article--title">
+          An attention-grabbing title for your article
+        </label>
         <input
           id="article--title"
           value={req.title}
           onChange={handleTitleChange}
           required
         ></input>
-        <label htmlFor="article--body">Text</label>
+        <label htmlFor="article--body">
+          Your article - write to your heart's content
+        </label>
         <textarea
           id="article--body"
           value={req.body}

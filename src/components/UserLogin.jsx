@@ -10,6 +10,7 @@ export default function UserLogin() {
   const { guest, setGuest } = useContext(CurrentGuestContext);
   const [input, setInput] = useState("");
   const [error, setError] = useState("");
+  const [displayError, isDisplayError] = useState(false);
   const [authSuccess, setAuthSuccess] = useState(false);
   const navigate = useNavigate();
 
@@ -21,6 +22,11 @@ export default function UserLogin() {
     if (authSuccess === true) {
       setGuest("");
       navigate(`/home`);
+    }
+
+    if (authSuccess === false) {
+      isDisplayError(true);
+      navigate("/login");
     }
   }
 
@@ -62,7 +68,7 @@ export default function UserLogin() {
           Or login as a guest
         </p>
       </Link>
-      <p>{error}</p>
+      {displayError ? <p className="error--message">{error}</p> : null}
     </>
   );
 }

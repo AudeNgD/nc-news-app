@@ -34,11 +34,12 @@ export default function NewTopic(props) {
   return (
     <>
       <p>This is a new topic. Congrats! Please tell us more about it -</p>
-      <label htmlFor="topic--description">description</label>
+      <label htmlFor="topic--description">Description</label>
       <textarea
         onChange={handleTopicDescriptionChange}
         id="topic--description"
         value={topicDescription}
+        placeholder="short description of the topic"
         required
       ></textarea>
 

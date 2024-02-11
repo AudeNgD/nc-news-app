@@ -13,24 +13,14 @@ export default function NavBar() {
 
   return (
     <nav>
-      {guest === "" ? (
-        <Link to={`/home`}>
-          <img
-            src="../src/assets/logo.png"
-            id="main--logo"
-            alt="nc news logo - a black and white computer drawing"
-          ></img>
-        </Link>
-      ) : (
-        <Link to={`/home`}>
-          <img
-            src="../src/assets/logo.png"
-            id="main--logo"
-            alt="nc news logo - a black and white computer drawing"
-          ></img>
-        </Link>
-      )}
-      <TopicLinks />
+      <Link to={`/home`}>
+        <img
+          src="../src/assets/logo.png"
+          id="main--logo"
+          alt="nc news logo - a black and white computer drawing"
+        ></img>
+      </Link>
+      {/* <TopicLinks /> */}
       {guest === "" &&
       location.pathname !== `/home/${currentUser.username}/account` ? (
         <Link to={`/home/${currentUser.username}/account`} id="link--account">

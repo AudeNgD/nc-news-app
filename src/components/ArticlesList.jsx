@@ -5,6 +5,7 @@ import { SortAndOrderArticles } from "./SortAndOrderArticles";
 import { useSearchParams } from "react-router-dom";
 
 export default function ArticlesList(props) {
+  const [currentPage, setCurrentPage] = useState(1);
   const [queries, setQueries] = useState({
     sort_by: "created_at",
     order: "desc",
@@ -15,17 +16,23 @@ export default function ArticlesList(props) {
   const [isLoadingArticles, setIsLoadingArticles] = useState(true);
   const [totalNumberOfArticles, setTotalNumberOfArticles] = useState(0);
   const [totalNumberOfPages, setTotalNumberOfPages] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [searchParams, setSearchParams] = useSearchParams();
+
+  // const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+
     fetchArticles(queries)
       .then((res) => {
         setTotalNumberOfArticles(res.total_count);
         setTotalNumberOfPages(Math.ceil(res.total_count / 10));
         setArticles(res.articles);
         setIsLoadingArticles(false);
-        setSearchParams(queries);
+        // setSearchParams(queries);
       })
       .catch((err) => {
         setIsLoadingArticles(false);
@@ -33,16 +40,13 @@ export default function ArticlesList(props) {
   }, [queries]);
 
   function handlePageClick(event) {
-    console.log(event);
     event.preventDefault();
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "smooth",
-    });
     setCurrentPage((currentPage) => currentPage + Number(event.target.value));
     setQueries((currentQueries) => {
-      return { ...currentQueries, p: currentPage };
+      return {
+        ...currentQueries,
+        p: currentQueries.p + Number(event.target.value),
+      };
     });
   }
 

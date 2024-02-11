@@ -8,6 +8,7 @@ export default function TopicLinks() {
   const { topics, setTopics } = useContext(ExistingTopicsContext);
   const [isLoadingTopics, setIsLoadingTopics] = useState(true);
   const [error, setError] = useState(null);
+  const [toggled, isToggled] = useState(true);
 
   useEffect(() => {
     fetchTopics()
@@ -22,21 +23,53 @@ export default function TopicLinks() {
       });
   }, [setTopics]);
 
+  function handleToggleClick(event) {
+    event.preventDefault();
+    toggled ? isToggled(false) : isToggled(true);
+  }
   return (
     <>
       {isLoadingTopics ? (
         <p className="loading--message">...loading topics</p>
       ) : (
         <>
-          <ul id="topics--menu">
-            {topics.map((topic) => {
-              return (
-                <li key={topic.slug}>
-                  <Link to={`/home/topics/${topic.slug}`}> {topic.slug}</Link>
-                </li>
-              );
-            })}
-          </ul>
+          {toggled ? (
+            <>
+              <h3>
+                TOPICS
+                <button
+                  onClick={handleToggleClick}
+                  className="sidebar--button-toggle"
+                >
+                  &#8593;
+                </button>
+              </h3>
+
+              <ul id="topics--menu">
+                {topics.map((topic) => {
+                  return (
+                    <li key={topic.slug}>
+                      <Link to={`/home/topics/${topic.slug}`}>
+                        {topic.slug}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </>
+          ) : (
+            <>
+              <h3>
+                TOPICS
+                <button
+                  onClick={handleToggleClick}
+                  className="sidebar--button-toggle"
+                >
+                  &#8595;
+                </button>
+              </h3>
+            </>
+          )}
         </>
       )}
     </>

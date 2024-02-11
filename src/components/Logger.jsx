@@ -22,9 +22,13 @@ export default function Logger() {
   return (
     <>
       {guest === "" ? (
-        <button onClick={handleLogout}>Logout</button>
+        <button id="button--logout" onClick={handleLogout}>
+          Logout
+        </button>
       ) : (
-        <button onClick={handleLogin}>Login</button>
+        <button id="button--login" onClick={handleLogin}>
+          Login
+        </button>
       )}
     </>
   );

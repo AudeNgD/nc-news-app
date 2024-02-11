@@ -10,7 +10,7 @@ export default function CommentsList(props) {
     <div id="comment--section">
       <h3>Comments</h3>
       {comments.map((comment) => {
-        if (comment.author === currentUser.username) {
+        if (currentUser !== "" && comment.author === currentUser.username) {
           comment.author = "You";
         }
         return (
