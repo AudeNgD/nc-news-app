@@ -19,6 +19,7 @@ export default function ArticlePage() {
   const [singleArticle, setSingleArticle] = useState([]);
   const [comments, setComments] = useState([]);
   const { guest, setGuest } = useContext(CurrentGuestContext);
+  const [secondVoteClick, isSecondVoteClick] = useState(false);
 
   useEffect(() => {
     fetchArticles(articleId)
@@ -56,12 +57,13 @@ export default function ArticlePage() {
   } = singleArticle;
 
   function handleClickVote(event) {
+    console.log(event);
     if (guest === "guest") {
       setError("You must have an account to be able to like articles");
-    } else {
+    } else if (guest === "" && secondVoteClick === false) {
       const vote = Number(event.target.value);
-      isDisabledVoting(true);
-
+      //isDisabledVoting(true);
+      isSecondVoteClick(true);
       patchArticleVotes(vote, article_id)
         .then(() => {
           setError(null);
@@ -77,6 +79,9 @@ export default function ArticlePage() {
       setSingleArticle((currentArticle) => {
         return { ...currentArticle, votes: currentArticle.votes + vote };
       });
+    } else if (secondVoteClick === true) {
+      setError("You can only vote once on an article");
+      setTimeout(() => setError(""), 5000);
     }
   }
 
@@ -104,12 +109,11 @@ export default function ArticlePage() {
         <>
           <img id="article--image" src={article_img_url} />
           <h2>{title}</h2>
-
           <p>{body}</p>
           <div className="section--interaction">
             <div className="vote">
               <button
-                disabled={disabledVoting}
+                // disabled={disabledVoting}
                 className="button--vote"
                 onClick={handleClickVote}
                 value="1"
@@ -117,7 +121,7 @@ export default function ArticlePage() {
                 &#128077;
               </button>
               <button
-                disabled={disabledVoting}
+                // disabled={disabledVoting}
                 className="button--vote"
                 onClick={handleClickVote}
                 value="-1"
@@ -135,7 +139,7 @@ export default function ArticlePage() {
               </button>
             </div>
           </div>
-          <div className="error--message"> {error}</div>
+          {error ? <div className="error--message"> {error}</div> : null}
         </>
       )}
       {toggle ? (

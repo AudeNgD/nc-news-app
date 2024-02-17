@@ -43,7 +43,7 @@ export default function NewTopic(props) {
         required
       ></textarea>
 
-      <button onClick={handleTopicDescriptionClick}>Done!</button>
+      <button onClick={handleTopicDescriptionClick}>Add new topic</button>
     </>
   );
 }

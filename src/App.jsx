@@ -7,7 +7,7 @@ import Login from "./components/Login";
 import UserHomepage from "./components/UserHomepage";
 import ArticlePage from "./components/ArticlePage";
 import NavBar from "./components/NavBar";
-import TopicsList from "./deprecated-components/TopicsList";
+import TopicsList from "./components/TopicsList";
 import "./App.css";
 import TopicPage from "./components/TopicPage";
 import { Outlet } from "react-router";

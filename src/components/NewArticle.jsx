@@ -48,10 +48,8 @@ export default function NewArticle() {
     const found = topics.find((topic) => topic.slug === inputTopic);
     if (typeof found !== "undefined") {
       console.log(found);
-      console.log("here");
       isExistingTopic(true);
     } else {
-      console.log("there");
       isToggled(true);
     }
   }

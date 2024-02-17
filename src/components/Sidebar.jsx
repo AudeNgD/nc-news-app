@@ -16,7 +16,11 @@ export default function Sidebar() {
     if (guest !== "guest") {
       navigate("/home/articles/new-article");
     } else {
+      console.log(event);
       setError("You must be logged in to add a new article");
+      //setTimeout(setError(""), 5000);
+      //cannot pass setError here directly as would be passing the result of setError to setTimeout
+      setTimeout(() => setError(""), 5000);
     }
   }
 
@@ -26,9 +30,10 @@ export default function Sidebar() {
         <button id="sidebar--button" onClick={handleClickNewArticle}>
           Post a new article
         </button>
-        <Expire delay="5000">
+        {/* <Expire delay="5000">
           <p className="error--message">{error}</p>
-        </Expire>
+        </Expire> */}
+        {error !== "" ? <p className="error--message">{error}</p> : null}
         <TopicLinks />
       </section>
     </>
