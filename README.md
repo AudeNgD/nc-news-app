@@ -1,18 +1,23 @@
-Link to deployed version: https://nc-news-demo.netlify.app/home
+# Northcoders News app
 
-This project was completed as part of the Northcoders bootcamp.
-It's a social news aggregation, web content rating and discussion website. It has articles divided into topics. Users can vote and add comments to articles.
+## This project
+I built the frontend for a social media news service similar to reddit, where a user can post articles relating to a topic. Other users can comment and leave votes too.
+It was built using React, JavaScript, HTML, CSS, Vite and Axios.
 
-The back end repo is here: https://github.com/AudeNgD/nc-news
+Backend
+Github repo: https://github.com/AudeNgD/nc-news
+Hosted version: https://nc-news-uld9.onrender.com/
 
-Minimum Node version: v21.3.0
+## Instructions
+1. Fork and clone the repo here [https://github.com/AudeNgD/nc-news-app](https://github.com/AudeNgD/nc-news-app)
+2. In your local repo, install the dependencies by running `npm i`
+3. Run `npm run dev` to run the app on your local server
 
-To run the project locally:
+## Minimum version requirements
+- Node version: v21.3.0
 
-1. Clone the repo here https://github.com/AudeNgD/nc-news-app
-2. In your terminal
-   $ git clone https://github.com/your-username/nc-news-app.git
-   $ cd nc-news-app
-   $ code .
-3. Run
-   $ npm i
+## Link to deployed version
+https://nc-news-demo.netlify.app/home
+
+
+
